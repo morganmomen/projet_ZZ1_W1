@@ -1,0 +1,6 @@
+make --dry-run --keep-going --print-directory
+make: Entering directory '/home/momomen/Documents/projet_zz1_sem_1'
+make: Leaving directory '/home/momomen/Documents/projet_zz1_sem_1'
+ 
+make: *** No targets specified and no makefile found.  Stop.
+

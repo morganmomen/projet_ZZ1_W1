@@ -1,8 +1,9 @@
 #include <SDL2/SDL.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include "windows.h"
 
-void new_window(int width, int height, int posx, int posy)
+SDL_Window * new_window(int width, int height, int posx, int posy)
 {
     SDL_Window *window = NULL;
         /* Initialisation de la SDL  + gestion de l'échec possible */
@@ -18,6 +19,27 @@ void new_window(int width, int height, int posx, int posy)
     SDL_Quit();                              // On referme la SDL       
     exit(EXIT_FAILURE);
     }
-    SDL_Delay(10000);
+    SDL_Delay(100);
+    return window;
+}
+
+SDL_Renderer * new_renderer(SDL_Window *window)
+{
+    SDL_Renderer *renderer = NULL;
+    renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+    if (renderer == NULL) {
+    SDL_Log("Error : SDL renderer creation - %s\n", 
+                SDL_GetError());                 // échec de la création de la fenêtre
+    SDL_Quit();                              // On referme la SDL       
+    exit(EXIT_FAILURE);
+    }
+    SDL_Delay(100);
+    return renderer;
+}
+
+
+void destroy_windows(SDL_Window *window)
+{
     SDL_DestroyWindow(window);
+    SDL_Quit();
 }

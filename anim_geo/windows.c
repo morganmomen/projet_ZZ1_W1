@@ -37,7 +37,10 @@ SDL_Renderer * new_renderer(SDL_Window *window)
     return renderer;
 }
 
-
+void clear_renderer(SDL_Renderer *renderer)
+{
+    SDL_RenderClear(renderer);
+}
 void destroy_windows(SDL_Window *window)
 {
     SDL_DestroyWindow(window);

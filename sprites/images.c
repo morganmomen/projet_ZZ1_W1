@@ -30,13 +30,14 @@ void displayImage(SDL_Texture* texture,SDL_Window* window,SDL_Renderer* renderer
 
     SDL_QueryTexture(texture, NULL, NULL,&source.w, &source.h);
 
+    window_dimensions.w = width;
+    window_dimensions.h = height;
+
     destination.x = x;
     destination.y = y;
     destination.w = width;
     destination.h =source.h;              // On fixe les dimensions de l'affichage à  celles de la fenêtre
 
-    SDL_RenderCopy(renderer, texture,&source,&destination);                 
-    SDL_RenderPresent(renderer);                  
-    SDL_Delay(500);
+    SDL_RenderCopy(renderer, texture,&source,&destination);                                   
     
 }

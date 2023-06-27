@@ -1,6 +1,6 @@
 #include "sprites.h"
 
-void displaySprite(SDL_Texture * texture, SDL_Window * window, SDL_Renderer * renderer)
+void displaySprite(SDL_Texture * texture, SDL_Window * window, SDL_Renderer * renderer, int frame)
 {
     SDL_Event event;
     SDL_Rect 
@@ -25,18 +25,13 @@ void displaySprite(SDL_Texture * texture, SDL_Window * window, SDL_Renderer * re
     destination.w = offset_x * zoom;
     destination.h = offset_y * zoom;
 
-    destination.y = window_dimensions.h/2;
+    destination.y = window_dimensions.h-32;
 
-    int speed=3;
-    for(int frame = 0; frame < 1000; frame++)
-    {
-        destination.x = frame*10;
-        state.x += offset_x;
-        state.x%=source.w;
-        SDL_RenderClear(renderer);
-        SDL_RenderCopy(renderer, texture,&state,&destination);
-        SDL_RenderPresent(renderer);
-        SDL_Delay(10);
-        x+=speed;
-    }
+    destination.x = frame*10;
+    state.x += frame*offset_x;
+    state.x%=source.w;
+    SDL_RenderCopy(renderer, texture,&state,&destination);
+    SDL_RenderPresent(renderer);
+    SDL_Delay(200);
+
 }

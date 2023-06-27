@@ -1,7 +1,7 @@
 #include "images.h"
 #include "../windows.h"
 
-SDL_Texture * load_texture_from_image(char * path, SDL_Window * window, SDL_Renderer * renderer)
+SDL_Texture * load_texture_from_image(char * path, SDL_Renderer * renderer)
 {
     SDL_Surface * image = IMG_Load(path);
     SDL_Texture * texture = NULL;
@@ -33,12 +33,10 @@ void displayImage(SDL_Texture* texture,SDL_Window* window,SDL_Renderer* renderer
     destination.x = x;
     destination.y = y;
     destination.w = width;
-    destination.h =height;              // On fixe les dimensions de l'affichage à  celles de la fenêtre
+    destination.h =source.h;              // On fixe les dimensions de l'affichage à  celles de la fenêtre
 
-    /* On veut afficher la texture de façon à ce que l'image occupe la totalité de la fenêtre */
-
-    SDL_RenderCopy(renderer, texture,&source,&destination);                 // Création de l'élément à afficher
-    SDL_RenderPresent(renderer);                  // Affichage                              // Pause en ms
-    SDL_Delay(10);
-    SDL_RenderClear(renderer); 
+    SDL_RenderCopy(renderer, texture,&source,&destination);                 
+    SDL_RenderPresent(renderer);                  
+    SDL_Delay(500);
+    
 }

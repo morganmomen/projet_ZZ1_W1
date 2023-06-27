@@ -74,8 +74,18 @@ void test_closewindows(SDL_Window * window)
         }
     }
 }
-void destroy_windows(SDL_Window *window)
+void endSDL(SDL_Window * window, SDL_Renderer * renderer)
 {
-    SDL_DestroyWindow(window);
+    if (renderer != NULL) 
+    {
+        SDL_DestroyRenderer(renderer);
+        renderer = NULL;
+    }
+    if (window != NULL)
+    {                                           
+        SDL_DestroyWindow(window);
+        window= NULL;
+    }
     SDL_Quit();
+    exit(EXIT_SUCCESS);
 }

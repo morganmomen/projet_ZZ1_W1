@@ -7,7 +7,6 @@ SDL_Event event;
 
 int main()
 {
-    
     SDL_DisplayMode screen;
     int *modx = malloc(sizeof(int));
     int *mody = malloc(sizeof(int));
@@ -35,6 +34,7 @@ int main()
     free(mody);
     free(posx);
     free(posy);
-    destroy_windows(window);
+    endSDL(window,renderer);
+    return 0;
 }
 

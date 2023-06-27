@@ -2,13 +2,11 @@
 
 void displaySprite(SDL_Texture * texture, SDL_Window * window, SDL_Renderer * renderer, int frame)
 {
-    SDL_Event event;
     SDL_Rect 
         source = {0},                         // Rectangle définissant la zone de la texture à récupérer
         window_dimensions = {0},              // Rectangle définissant la fenêtre, on n'utilisera que largeur et hauteur
         destination = {0},
         state={0};
-    int x =0;
     SDL_GetWindowSize(window, &window_dimensions.w, &window_dimensions.h);
     SDL_QueryTexture(texture, NULL, NULL,&source.w, &source.h);
 

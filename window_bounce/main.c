@@ -13,8 +13,9 @@ int main()
     int *mody = malloc(sizeof(int));
     int *posx = malloc(sizeof(int));
     int *posy = malloc(sizeof(int));
-    SDL_Window *window = NULL;
-    window = new_window(300,200,*posx,*posy);
+    SDL_Window *window =new_window(300,200,*posx,*posy);
+    SDL_Renderer * renderer = new_renderer(window);
+    
     SDL_GetCurrentDisplayMode(SDL_GetWindowDisplayIndex(window),&screen);
     const int width = screen.w;
     const int height = screen.h;
@@ -28,7 +29,7 @@ int main()
     while (program_running)
     {
         test_closewindows(window);
-        window_bounce(window,modx,mody,width,height);
+        window_bounce(window,renderer,modx,mody,width,height);
     }
     free(modx);
     free(mody);

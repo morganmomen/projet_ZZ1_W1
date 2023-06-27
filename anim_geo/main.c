@@ -1,4 +1,4 @@
-#include "windows.h"
+#include "../windows.h"
 
 
 void draw_rectangle(SDL_Renderer * renderer,SDL_Window *window, int x, int y)

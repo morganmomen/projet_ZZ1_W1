@@ -1,4 +1,5 @@
 #include "event_windows.h"
+#include "../windows.h"
 #include <time.h>
 
 SDL_bool program_running = SDL_TRUE;

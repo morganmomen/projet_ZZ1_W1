@@ -25,9 +25,9 @@ void displaySprite(SDL_Texture * texture, SDL_Window * window, SDL_Renderer * re
     destination.w = offset_x * zoom;
     destination.h = offset_y * zoom;
 
+    destination.x = window_dimensions.w/2;
     destination.y = window_dimensions.h-48;
 
-    destination.x = frame*10;
     state.x += frame*offset_x;
     state.x%=source.w;
     SDL_RenderCopy(renderer, texture,&state,&destination);

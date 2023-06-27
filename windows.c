@@ -38,7 +38,7 @@ SDL_Renderer * new_renderer(SDL_Window *window)
 }
 
 
-void test_closewindows(SDL_Window * window)
+void test_closewindows(SDL_Window * window, SDL_Renderer * renderer)
 {
     SDL_Event event;
     while (SDL_PollEvent(&event))
@@ -47,7 +47,7 @@ void test_closewindows(SDL_Window * window)
         {
             case SDL_QUIT:
             {
-                destroy_windows(window);
+                endSDL(window, renderer);
                 exit(EXIT_SUCCESS);
                 break;
             }
@@ -57,7 +57,7 @@ void test_closewindows(SDL_Window * window)
                 {
                     case SDLK_ESCAPE:
                     {
-                        destroy_windows(window);
+                        endSDL(window, renderer);
                         exit(EXIT_SUCCESS);
                         break;
                     }

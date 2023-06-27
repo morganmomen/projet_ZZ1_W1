@@ -10,30 +10,21 @@ int main()
     SDL_DisplayMode screen;
     int *modx = malloc(sizeof(int));
     int *mody = malloc(sizeof(int));
-    int *posx = malloc(sizeof(int));
-    int *posy = malloc(sizeof(int));
-    SDL_Window *window =new_window(300,200,*posx,*posy);
+    SDL_Window *window =new_window(500,200,300,300);
     SDL_Renderer * renderer = new_renderer(window);
-    
     SDL_GetCurrentDisplayMode(SDL_GetWindowDisplayIndex(window),&screen);
-    const int width = screen.w;
-    const int height = screen.h;
 
     srand(time(0));
-    *posx=rand()%width;
-    *posy=rand()%height;
     *modx=rand()%25;
     *mody=rand()%25;
 
     while (program_running)
     {
-        test_closewindows(window);
-        window_bounce(window,renderer,modx,mody,width,height);
+        test_closewindows(window,renderer);
+        window_bounce(window,renderer,modx,mody,screen.w,screen.h);
     }
     free(modx);
     free(mody);
-    free(posx);
-    free(posy);
     endSDL(window,renderer);
     return 0;
 }

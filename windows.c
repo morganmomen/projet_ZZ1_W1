@@ -26,7 +26,7 @@ SDL_Window * new_window(int width, int height, int posx, int posy)
 SDL_Renderer * new_renderer(SDL_Window *window)
 {
     SDL_Renderer *renderer = NULL;
-    renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+    renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED| SDL_RENDERER_PRESENTVSYNC);
     if (renderer == NULL) {
     SDL_Log("Error : SDL renderer creation - %s\n", 
                 SDL_GetError());                 // échec de la création de la fenêtre
@@ -37,10 +37,6 @@ SDL_Renderer * new_renderer(SDL_Window *window)
     return renderer;
 }
 
-void clear_renderer(SDL_Renderer *renderer)
-{
-    SDL_RenderClear(renderer);
-}
 
 void test_closewindows(SDL_Window * window)
 {

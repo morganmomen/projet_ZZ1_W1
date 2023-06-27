@@ -1,16 +1,9 @@
 #include "../windows.h"
+#include "draw.h"
+#include <time.h>
 
 
-void draw_rectangle(SDL_Renderer * renderer,SDL_Window *window, int x, int y)
-{
-    int w_width, w_height;
-    SDL_GetWindowSize(window, &w_width, &w_height);
-    SDL_Rect rect = {x,y,384,196};
-    SDL_RenderFillRect(renderer, &rect);
-    SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
-    SDL_RenderPresent(renderer);
-    SDL_Delay(100);    
-}
+
 
 void bounce_rectangle(SDL_Renderer * renderer,SDL_Window *window)
 {
@@ -18,34 +11,41 @@ void bounce_rectangle(SDL_Renderer * renderer,SDL_Window *window)
     int *posy = malloc(sizeof(int));
     int *w = malloc(sizeof(int));
     int *h = malloc(sizeof(int));
-    int modx=1;
-    int mody=1;
-    *posx=0;
-    *posy=0;
-    SDL_GetWindowPosition(window,posx,posy);
-    SDL_GetWindowSize(window,w,h);
+    int modx=25;
+    int mody=25;
+    *posx=1;
+    *posy=1;
     while(SDL_TRUE)
     {
+        SDL_GetWindowSize(window,w,h);
+        SDL_RenderClear(renderer);
         if (*posx<=0) modx=-modx;
-        if (*posx>=*w-300) modx=-modx;
+        if (*posx>=*w-384) modx=-modx;
         if (*posy<=0) mody=-mody;
-        if (*posy>=*h-300)mody=-mody;
-        draw_rectangle(renderer,window,*posx+modx,*posy+mody);
+        if (*posy>=*h-192)mody=-mody;
+        *posx+=modx;
+        *posy+=mody;
+        test_closewindows(window);
+        draw_rectangle(renderer,*posx,*posy,384,216);
+        SDL_RenderPresent(renderer);
         SDL_Delay(10);
+        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
     }
-    
+    free(posx);
+    free(posy);
+    free(w);
+    free(h);    
 }
 
 
 int main()
 {
     SDL_DisplayMode screen;
-    SDL_Window *window = new_window(1000, 600, 100, 100);
+    SDL_Window *window = new_window(1920, 1080, 100, 100);
     SDL_GetCurrentDisplayMode(SDL_GetWindowDisplayIndex(window),&screen);
     SDL_Renderer * renderer = new_renderer(window);
     //Dessin dans le renderer
     bounce_rectangle(renderer,window);
-    clear_renderer(renderer);
     destroy_windows(window);
     
 }

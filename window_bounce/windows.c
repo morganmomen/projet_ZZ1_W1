@@ -41,6 +41,43 @@ void clear_renderer(SDL_Renderer *renderer)
 {
     SDL_RenderClear(renderer);
 }
+
+void test_closewindows(SDL_Window * window)
+{
+    SDL_Event event;
+    while (SDL_PollEvent(&event))
+    {
+        switch (event.type)
+        {
+            case SDL_QUIT:
+            {
+                destroy_windows(window);
+                exit(EXIT_SUCCESS);
+                break;
+            }
+            case SDL_KEYDOWN:
+            {
+                switch (event.key.keysym.sym)
+                {
+                    case SDLK_ESCAPE:
+                    {
+                        destroy_windows(window);
+                        exit(EXIT_SUCCESS);
+                        break;
+                    }
+                    default:
+                    {
+                        break;
+                    }
+                }
+            }
+            default:
+            {
+                break;
+            }
+        }
+    }
+}
 void destroy_windows(SDL_Window *window)
 {
     SDL_DestroyWindow(window);

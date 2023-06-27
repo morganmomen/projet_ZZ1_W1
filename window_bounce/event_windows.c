@@ -10,22 +10,10 @@ void window_bounce(SDL_Window * window, int *modx,int *mody, int width, int heig
     //The window will move and bounce on the borders of the screen
     SDL_GetWindowPosition(window,posx,posy);
     SDL_GetWindowSize(window,w,h);    
-    if (*posx<=0)
-    {
-        *modx=-*modx;
-    }
-    if (*posx>=width-*w)
-    {
-        *modx=-*modx;
-    }
-    if (*posy<=28)
-    {
-        *mody=-*mody;
-    }
-    if (*posy>=height-*h)
-    {
-        *mody=-*mody;
-    }
+    if (*posx<=0) *modx=-*modx;
+    if (*posx>=width-*w) *modx=-*modx;
+    if (*posy<=28) *mody=-*mody;
+    if (*posy>=height-*h) *mody=-*mody;
     SDL_SetWindowPosition(window,*posx+*modx,*posy+*mody);
     free(posx);
     free(posy);

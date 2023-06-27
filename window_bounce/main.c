@@ -1,7 +1,8 @@
 #include "event_windows.h"
 #include <time.h>
 
-
+SDL_bool program_running = SDL_TRUE;
+SDL_Event event;
 
 int main()
 {
@@ -19,15 +20,13 @@ int main()
 
     srand(time(0));
     *posx=rand()%width;
-    srand(time(1));
     *posy=rand()%height;
-    srand(time(2));
     *modx=rand()%25;
-    srand(time(3));
     *mody=rand()%25;
 
-    while (SDL_TRUE)
+    while (program_running)
     {
+        test_closewindows(window);
         window_bounce(window,modx,mody,width,height);
     }
     free(modx);
@@ -35,6 +34,5 @@ int main()
     free(posx);
     free(posy);
     destroy_windows(window);
-
 }
 

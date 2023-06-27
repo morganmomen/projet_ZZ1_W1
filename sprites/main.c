@@ -30,12 +30,17 @@ int main()
     for (int frame = 0; frame<400; frame++) 
     {
         test_closewindows(window);
-        displayImage(background,window,renderer,0,0,background_width,background_height);
-        displayImage(plx1,window,renderer,0,0,background_width,background_height);
-        displayImage(plx2,window,renderer,0,0,background_width,background_height);
-        displayImage(plx3,window,renderer,0,0,background_width,background_height);
-        displayImage(plx4,window,renderer,0,0,background_width,background_height);
-        displayImage(floor,window,renderer,0,background_height-floor_height,background_width,background_height);
+        displayImage(background,window,renderer,0,0,background_width,background_height,0,frame);
+        displayImage(plx1,window,renderer,0,0,background_width,background_height,1,frame);
+        displayImage(plx2,window,renderer,0,0,background_width,background_height,2,frame);
+        displayImage(plx3,window,renderer,0,0,background_width,background_height,3,frame);
+        displayImage(plx4,window,renderer,0,0,background_width,background_height,4,frame);
+        displayImage(floor,window,renderer,0,background_height-floor_height,background_width,background_height,5,frame);
+        displayImage(plx1,window,renderer,background_width,0,background_width,background_height,1,frame);
+        displayImage(plx2,window,renderer,background_width,0,background_width,background_height,2,frame);
+        displayImage(plx3,window,renderer,background_width,0,background_width,background_height,3,frame);
+        displayImage(plx4,window,renderer,background_width,0,background_width,background_height,4,frame);
+        displayImage(floor,window,renderer,floor_width,background_height-floor_height,background_width,background_height,5,frame);
         displaySprite(character,window,renderer,frame);
         SDL_RenderPresent(renderer);
         SDL_Delay(100);

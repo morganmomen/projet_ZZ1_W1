@@ -21,7 +21,7 @@ SDL_Texture * load_texture_from_image(char * path, SDL_Renderer * renderer)
     return texture;
 }
 
-void displayImage(SDL_Texture* texture,SDL_Window* window,SDL_Renderer* renderer,int x, int y,int width, int height)
+void displayImage(SDL_Texture* texture,SDL_Window* window,SDL_Renderer* renderer,int x, int y,int width, int height,int speed,int frame)
 {
     SDL_Rect 
         source = {0},                         // Rectangle définissant la zone de la texture à récupérer
@@ -33,7 +33,11 @@ void displayImage(SDL_Texture* texture,SDL_Window* window,SDL_Renderer* renderer
     window_dimensions.w = width;
     window_dimensions.h = height;
 
-    destination.x = x;
+    destination.x = x-frame*speed;
+    if (destination.x<-source.w)
+    {
+        destination.x=source.w;
+    }
     destination.y = y;
     destination.w = width;
     destination.h =source.h;              // On fixe les dimensions de l'affichage à  celles de la fenêtre

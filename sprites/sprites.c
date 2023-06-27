@@ -13,7 +13,7 @@ void displaySprite(SDL_Texture * texture, SDL_Window * window, SDL_Renderer * re
     SDL_QueryTexture(texture, NULL, NULL,&source.w, &source.h);
 
     int nb_images= 8;
-    float zoom = 1; 
+    float zoom = 2.5; 
     int offset_x = source.w / nb_images;
     int offset_y = source.h;
 
@@ -26,7 +26,7 @@ void displaySprite(SDL_Texture * texture, SDL_Window * window, SDL_Renderer * re
     destination.h = offset_y * zoom;
 
     destination.x = window_dimensions.w/2;
-    destination.y = window_dimensions.h-48;
+    destination.y = window_dimensions.h-source.h*zoom-30;
 
     state.x += frame*offset_x;
     state.x%=source.w;

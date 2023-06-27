@@ -3,7 +3,12 @@
 void draw_rectangle(SDL_Renderer * renderer, int x, int y, int width, int height)
 {
     SDL_Rect rect = {x,y,width,height};
-    SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255); 
+    change_color(renderer);
     SDL_RenderFillRect(renderer, &rect);
        
+}
+void change_color(SDL_Renderer * renderer)
+{
+    srand(time(NULL));
+    SDL_SetRenderDrawColor(renderer, rand()%255, rand()%255, rand()%255, 255);
 }
